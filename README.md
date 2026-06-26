@@ -6,9 +6,11 @@
 
 ## 设计限制
 
-- 只问一次模型并返回文本结果。
-- 默认模型固定为 `opus4.8`。
-- 失败时自动降级：`opus4.8` → `opus4.7` → `opus4.6`。
+- 支持单轮 `question` 和多轮 `messages` 对话。
+- 默认模型固定为 `claude-opus-4-8-20260501`。
+- 失败时自动降级：`claude-opus-4-8-20260501` → `claude-opus-4-7-20260101` → `claude-opus-4-6-20251201`。
+- 请求上游时固定启用流式响应，降低长输出请求超时概率。
+- 默认 `max_tokens` 为 `32000`，最多允许 `64000`。
 - 除 API Key 和请求超时外，其它上游接口配置写死。
 - 不支持 OpenAI。
 - 不向下游模型暴露任何工具。
@@ -40,8 +42,9 @@ npm run build
 参数：
 
 - `question`：要询问的问题。
+- `messages`：可选，多轮对话历史，元素格式为 `{ role: "user" | "assistant", content: string }`。提供 `messages` 时优先使用它。
 - `systemPrompt`：可选，系统提示词。
 - `temperature`：可选，0 到 1。
-- `maxTokens`：可选，默认 1024。
+- `maxTokens`：可选，默认 32000，最大 64000。
 
 返回：模型的纯文本回答。
