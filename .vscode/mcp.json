@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "ask-claude": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/dist/index.js"],
+      "env": {
+        "UNLIMITED_SURF_API_KEY": "${input:unlimitedSurfApiKey}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "unlimitedSurfApiKey",
+      "type": "promptString",
+      "description": "Unlimited Surf API Key",
+      "password": true
+    }
+  ]
+}
