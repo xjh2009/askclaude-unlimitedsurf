@@ -4,7 +4,7 @@
   "description": "MCP server exposing a read-only Ask Claude tool through Unlimited Surf with automatic model fallback.",
   "type": "module",
   "bin": {
-    "askclaude-unlimitedsurf": "./dist/index.js"
+    "askclaude-unlimitedsurf": "dist/index.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
